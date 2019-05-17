@@ -125,7 +125,7 @@
                     <xsl:value-of select="&quot;C:\Users\bborisov\Desktop\AutomationTest&quot;"/>
                 </fileName>
                 <textContent>
-                    <xsl:value-of select="&quot;ccur&quot;"/>
+                    <xsl:value-of select="&quot;cur&quot;"/>
                 </textContent>
             </ns3:WriteActivityInputTextClass>
         </pd:inputBindings>
