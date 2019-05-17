@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd3" xmlns:wsdlPfx="http://xmlns.example.com/1543408252088" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd4">
+    <wsdl:import namespace="http://xmlns.example.com/1543408252088" location="/com_bc_musify/Resources/Schemas/WSDL/MusifyService.wsdl"/>
+    <pd:name>com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeRegisterNewCustomer.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType wsMsgRef="wsdlPfx:RegisterNewCustomerInput"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>63</pd:startY>
+    <pd:returnBindings>
+        <wsdlPfx:RegisterNewCustomerOutput>
+            <part1>
+                <ns2:Customer>
+                    <ns2:CustomerName>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerName"/>
+                    </ns2:CustomerName>
+                    <ns2:CustomerPhone>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerPhone"/>
+                    </ns2:CustomerPhone>
+                    <ns2:Email>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:Email"/>
+                    </ns2:Email>
+                    <ns2:CustomerPID>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerPID"/>
+                    </ns2:CustomerPID>
+                    <ns2:CustomerType>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerType"/>
+                    </ns2:CustomerType>
+                </ns2:Customer>
+            </part1>
+        </wsdlPfx:RegisterNewCustomerOutput>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType wsMsgRef="wsdlPfx:RegisterNewCustomerOutput"/>
+    <pd:endX>680</pd:endX>
+    <pd:endY>63</pd:endY>
+    <pd:errorSchemas>
+        <Schema1 wsMsgRef="wsdlPfx:Error"/>
+    </pd:errorSchemas>
+    <pd:processVariables>
+        <Customer wsMsgRef="wsdlPfx:RegisterNewCustomerOutput"/>
+    </pd:processVariables>
+    <pd:targetNamespace>http://xmlns.example.com/1543995154562</pd:targetNamespace>
+    <pd:activity name="RegisterNewCustomer">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>307</pd:x>
+        <pd:y>63</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/com_bc_musify/Resources/Connections/JDBC/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>INSERTCUSTOMER</ProcedureName>
+            <useSchema>true</useSchema>
+            <oraObjects/>
+            <oraTables/>
+            <ConfigurationError>output schema is null</ConfigurationError>
+            <parameterTypes>
+                <parameter>
+                    <colName>P_CUSTOMER_NAME</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_CUSTOMER_PHONE</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_EMAIL</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_CUSTOMER_PID</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_CUSTOMER_TYPE</colName>
+                    <colType>1</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <P_CUSTOMER_NAME>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerName"/>
+                    </P_CUSTOMER_NAME>
+                    <P_CUSTOMER_PHONE>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerPhone"/>
+                    </P_CUSTOMER_PHONE>
+                    <P_EMAIL>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:Email"/>
+                    </P_EMAIL>
+                    <P_CUSTOMER_PID>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerPID"/>
+                    </P_CUSTOMER_PID>
+                    <P_CUSTOMER_TYPE>
+                        <xsl:value-of select="$Start/wsdlPfx:RegisterNewCustomerInput/part1/ns:Customer/ns:CustomerType"/>
+                    </P_CUSTOMER_TYPE>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>RegisterNewCustomer</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>RegisterNewCustomer</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

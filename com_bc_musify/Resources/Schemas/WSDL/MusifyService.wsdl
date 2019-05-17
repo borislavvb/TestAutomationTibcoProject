@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns6="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd6" xmlns:ns5="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd5" xmlns:ns7="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/XSD/Schema.xsd" xmlns:ns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd" xmlns:tns="http://xmlns.example.com/1543408252088" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd2" xmlns:ns4="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd4" xmlns:ns3="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd3" targetNamespace="http://xmlns.example.com/1543408252088">
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd" location="../XSD/GetAllRecordsInput.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd2" location="../XSD/GetAllRecordsOutput.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd3" location="../XSD/RegisterNewCustomerInput.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd4" location="../XSD/RegisterNewCustomerOutput.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/XSD/Schema.xsd" location="../XSD/Error.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd6" location="../XSD/CreateOrderOutput.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd5" location="../XSD/CreateOrderInput.xsd"/>
+    <message name="GetAllRecordsInput">
+        <part name="part1" element="ns:GetAllRecordsInput"/>
+    </message>
+    <message name="GetAllRecordsOutput">
+        <part name="part1" element="ns2:Records"/>
+    </message>
+    <message name="RegisterNewCustomerInput">
+        <part name="part1" element="ns3:Customer"/>
+    </message>
+    <message name="RegisterNewCustomerOutput">
+        <part name="part1" element="ns4:Customer"/>
+    </message>
+    <message name="CreateOrderInput">
+        <part name="part1" element="ns5:Order"/>
+    </message>
+    <message name="CreateOrderOutput">
+        <part name="part1" element="ns6:Invoice"/>
+    </message>
+    <message name="Error">
+        <part name="part1" element="ns7:Error"/>
+    </message>
+    <portType name="PortType">
+        <operation name="GetAllRecords">
+            <input message="tns:GetAllRecordsInput"/>
+            <output message="tns:GetAllRecordsOutput"/>
+            <fault name="fault1" message="tns:Error"/>
+        </operation>
+        <operation name="CreateOrder">
+            <input message="tns:CreateOrderInput"/>
+            <output message="tns:CreateOrderOutput"/>
+            <fault name="fault1" message="tns:Error"/>
+        </operation>
+        <operation name="RegisterNewCustomer">
+            <input message="tns:RegisterNewCustomerInput"/>
+            <output message="tns:RegisterNewCustomerOutput"/>
+            <fault name="fault1" message="tns:Error"/>
+        </operation>
+    </portType>
+</definitions>

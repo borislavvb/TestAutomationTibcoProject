@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/XSD/Schema.xsd"
+	 targetNamespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/XSD/Schema.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="Error">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ErrMsg" type="xs:string"/>
+				<xs:element name="ErrCode" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

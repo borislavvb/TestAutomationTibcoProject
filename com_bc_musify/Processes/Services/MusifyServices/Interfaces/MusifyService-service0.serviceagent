@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="http://xmlns.example.com/1543408252088">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="http://xmlns.example.com/1543408252088" location="/com_bc_musify/Resources/Schemas/WSDL/MusifyService.wsdl"/>
+    <config>
+        <wsdl namespace="http://xmlns.example.com/1543995154406" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <name>MusifyService-service0</name>
+        <resourceType>service.definition</resourceType>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <serviceChange>Tue Dec 11 15:14:21 EET 2018</serviceChange>
+        <interfaceImpl>
+            <tab>
+                <tabName>PortType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/com_bc_musify/Resources/Schemas/WSDL/MusifyService.wsdl" portType="PortType" ns="http://xmlns.example.com/1543408252088"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="GetAllRecords" opImpl="/com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeGetAllRecords.process"/>
+                                    <row opName="CreateOrder" opImpl="/com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeCreateOrder.process"/>
+                                    <row opName="RegisterNewCustomer" opImpl="/com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeRegisterNewCustomer.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="PortTypeEndpoint0" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/com_bc_musify/Resources/Connections/JMS/JMS Connection.sharedjmscon</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <JMSTo>com.bc.musify</JMSTo>
+                                                                <JMSDestinationType>queue</JMSDestinationType>
+                                                                <JMSMessageType>Text</JMSMessageType>
+                                                                <SoapJmsW3cFlag>false</SoapJmsW3cFlag>
+                                                                <targetService/>
+                                                                <useIncomingDeliveryMode>false</useIncomingDeliveryMode>
+                                                                <JMSDeliveryMode>2</JMSDeliveryMode>
+                                                                <JMSAcknowledgementMode>1</JMSAcknowledgementMode>
+                                                                <ApplicationProperties/>
+                                                                <ApplicationPropertiesOutMessage/>
+                                                                <JMSMaxSessions/>
+                                                                <operations>
+                                                                    <operation name="GetAllRecords">
+                                                                        <general>
+                                                                            <config>
+                                                                                <JMSDurable>false</JMSDurable>
+                                                                                <JMSDurableName/>
+                                                                            </config>
+                                                                        </general>
+                                                                    </operation>
+                                                                    <operation name="CreateOrder"/>
+                                                                    <operation name="RegisterNewCustomer"/>
+                                                                </operations>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="GetAllRecords">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/com_bc_musify/Resources/Schemas/WSDL/MusifyService-service0.serviceagent/PortTypeEndpoint0/GetAllRecords</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="CreateOrder">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/com_bc_musify/Resources/Schemas/WSDL/MusifyService-service0.serviceagent/PortTypeEndpoint0/CreateOrder</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="RegisterNewCustomer">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/com_bc_musify/Resources/Schemas/WSDL/MusifyService-service0.serviceagent/PortTypeEndpoint0/RegisterNewCustomer</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+    </config>
+</serviceResource>

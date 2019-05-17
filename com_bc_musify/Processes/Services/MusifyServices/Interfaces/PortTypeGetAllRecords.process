@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd2" xmlns:wsdlPfx="http://xmlns.example.com/1543408252088">
+    <wsdl:import namespace="http://xmlns.example.com/1543408252088" location="/com_bc_musify/Resources/Schemas/WSDL/MusifyService.wsdl"/>
+    <pd:name>com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeGetAllRecords.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType wsMsgRef="wsdlPfx:GetAllRecordsInput"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>62</pd:startY>
+    <pd:returnBindings>
+        <wsdlPfx:GetAllRecordsOutput>
+            <part1>
+                <ns:Records>
+                    <xsl:for-each select="$AllRecords/wsdlPfx:GetAllRecordsOutput/part1/ns:Records/ns:Record">
+                        <ns:Record>
+                            <ns:Artist>
+                                <xsl:value-of select="ns:Artist"/>
+                            </ns:Artist>
+                            <ns:Album>
+                                <xsl:value-of select="ns:Album"/>
+                            </ns:Album>
+                            <ns:Year>
+                                <xsl:value-of select="ns:Year"/>
+                            </ns:Year>
+                            <ns:Media>
+                                <xsl:value-of select="ns:Media"/>
+                            </ns:Media>
+                            <ns:Type>
+                                <xsl:value-of select="ns:Type"/>
+                            </ns:Type>
+                            <ns:Price>
+                                <xsl:value-of select="ns:Price"/>
+                            </ns:Price>
+                        </ns:Record>
+                    </xsl:for-each>
+                </ns:Records>
+            </part1>
+        </wsdlPfx:GetAllRecordsOutput>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType wsMsgRef="wsdlPfx:GetAllRecordsOutput"/>
+    <pd:endX>669</pd:endX>
+    <pd:endY>62</pd:endY>
+    <pd:errorSchemas>
+        <Schema1 wsMsgRef="wsdlPfx:Error"/>
+    </pd:errorSchemas>
+    <pd:processVariables>
+        <AllRecords wsMsgRef="wsdlPfx:GetAllRecordsOutput"/>
+    </pd:processVariables>
+    <pd:targetNamespace>http://xmlns.example.com/1543995154482</pd:targetNamespace>
+    <pd:activity name="Assign">
+        <pd:type>com.tibco.pe.core.AssignActivity</pd:type>
+        <pd:resourceType>ae.activities.assignActivity</pd:resourceType>
+        <pd:x>478</pd:x>
+        <pd:y>62</pd:y>
+        <config>
+            <variableName>AllRecords</variableName>
+        </config>
+        <pd:inputBindings>
+            <wsdlPfx:GetAllRecordsOutput>
+                <part1>
+                    <ns:Records>
+                        <xsl:for-each select="$GetAllRecords/resultSet/Resultsets/ResultSet1/Record1">
+                            <ns:Record>
+                                <ns:Artist>
+                                    <xsl:value-of select="ARTIST"/>
+                                </ns:Artist>
+                                <ns:Album>
+                                    <xsl:value-of select="ALBUM"/>
+                                </ns:Album>
+                                <ns:Year>
+                                    <xsl:value-of select="round(YEAR)"/>
+                                </ns:Year>
+                                <ns:Media>
+                                    <xsl:value-of select="MEDIA"/>
+                                </ns:Media>
+                                <ns:Type>
+                                    <xsl:value-of select="TYPE"/>
+                                </ns:Type>
+                                <ns:Price>
+                                    <xsl:value-of select="PRICE"/>
+                                </ns:Price>
+                            </ns:Record>
+                        </xsl:for-each>
+                    </ns:Records>
+                </part1>
+            </wsdlPfx:GetAllRecordsOutput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="GetAllRecords">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>278</pd:x>
+        <pd:y>62</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/com_bc_musify/Resources/Connections/JDBC/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <schema/>
+            <ProcedureName>GETALLRECORDS</ProcedureName>
+            <useSchema>true</useSchema>
+            <oraObjects/>
+            <oraTables/>
+            <ResultSets>
+                <ResultSet>
+                    <QueryOutputCachedSchemaColumns>ARTIST</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>ALBUM</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>YEAR</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>2</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>MEDIA</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>TYPE</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                    <QueryOutputCachedSchemaColumns>PRICE</QueryOutputCachedSchemaColumns>
+                    <QueryOutputCachedSchemaDataTypes>2</QueryOutputCachedSchemaDataTypes>
+                    <QueryOutputCachedSchemaStatus>NillableElement</QueryOutputCachedSchemaStatus>
+                </ResultSet>
+            </ResultSets>
+            <parameterTypes/>
+        </config>
+        <pd:inputBindings>
+            <inputs/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>GetAllRecords</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetAllRecords</pd:from>
+        <pd:to>Assign</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Assign</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

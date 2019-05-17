@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd5" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/XSD/Schema.xsd" xmlns:ns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd6" xmlns:wsdlPfx="http://xmlns.example.com/1543408252088" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tibco.com/pe/GenerateErrorActivity/InputSchema" xmlns:ns1="http://www.tibco.com/pe/EngineTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions">
+    <wsdl:import namespace="http://xmlns.example.com/1543408252088" location="/com_bc_musify/Resources/Schemas/WSDL/MusifyService.wsdl"/>
+    <pd:name>com_bc_musify/Processes/Services/MusifyServices/Interfaces/PortTypeCreateOrder.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType wsMsgRef="wsdlPfx:CreateOrderInput"/>
+    <pd:startX>124</pd:startX>
+    <pd:startY>149</pd:startY>
+    <pd:returnBindings>
+        <wsdlPfx:CreateOrderOutput>
+            <part1>
+                <xsl:choose>
+                    <xsl:when test="count($Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records)&lt;4">
+                        <ns:Invoice>
+                            <ns:OrderID>
+                                <xsl:value-of select="round($CreateOrderProcedure/resultSet/outputSet/ORDER_ID)"/>
+                            </ns:OrderID>
+                            <ns:OrderDate>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_ORDER_DATE"/>
+                            </ns:OrderDate>
+                            <ns:CustomerName>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_CUSTOMER_NAME"/>
+                            </ns:CustomerName>
+                            <ns:ShippingAddress>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_SHIPPING_ADDRESS"/>
+                            </ns:ShippingAddress>
+                            <xsl:for-each select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records">
+                                <ns:Products>
+                                    <ns:ProductName>
+                                        <xsl:value-of select="concat(pfx:Artist,' - ',pfx:Album)"/>
+                                    </ns:ProductName>
+                                    <ns:ProductPrice>
+                                        <xsl:value-of select="pfx:Price"/>
+                                    </ns:ProductPrice>
+                                </ns:Products>
+                            </xsl:for-each>
+                            <ns:TotalProducts>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_AMOUNT"/>
+                            </ns:TotalProducts>
+                            <ns:Vat>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_VAT"/>
+                            </ns:Vat>
+                            <ns:Total>
+                                <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/P_AMOUNT + $CreateOrderProcedure/resultSet/outputSet/P_VAT"/>
+                            </ns:Total>
+                        </ns:Invoice>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <ns:Invoice>
+                            <ns:OrderID>
+                                <xsl:value-of select="round($CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/ORDER_ID)"/>
+                            </ns:OrderID>
+                            <ns:OrderDate>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_ORDER_DATE"/>
+                            </ns:OrderDate>
+                            <ns:CustomerName>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_CUSTOMER_NAME"/>
+                            </ns:CustomerName>
+                            <ns:ShippingAddress>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_SHIPPING_ADDRESS"/>
+                            </ns:ShippingAddress>
+                            <xsl:for-each select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records">
+                                <ns:Products>
+                                    <ns:ProductName>
+                                        <xsl:value-of select="concat(pfx:Artist, ' - ', pfx:Album)"/>
+                                    </ns:ProductName>
+                                    <ns:ProductPrice>
+                                        <xsl:value-of select="pfx:Price"/>
+                                    </ns:ProductPrice>
+                                </ns:Products>
+                            </xsl:for-each>
+                            <ns:TotalProducts>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_AMOUNT"/>
+                            </ns:TotalProducts>
+                            <ns:Vat>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_VAT"/>
+                            </ns:Vat>
+                            <ns:Total>
+                                <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_AMOUNT + $CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/P_VAT"/>
+                            </ns:Total>
+                        </ns:Invoice>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </part1>
+        </wsdlPfx:CreateOrderOutput>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType wsMsgRef="wsdlPfx:CreateOrderOutput"/>
+    <pd:endX>914</pd:endX>
+    <pd:endY>150</pd:endY>
+    <pd:errorSchemas>
+        <Schema1 wsMsgRef="wsdlPfx:Error"/>
+    </pd:errorSchemas>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1543995154533</pd:targetNamespace>
+    <pd:group name="Group">
+        <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+        <pd:resourceType>ae.process.group</pd:resourceType>
+        <pd:x>476</pd:x>
+        <pd:y>74</pd:y>
+        <pd:width>183</pd:width>
+        <pd:height>140</pd:height>
+        <pd:collapsedWidth>57</pd:collapsedWidth>
+        <pd:collapsedHeight>70</pd:collapsedHeight>
+        <pd:groupVariables/>
+        <pd:joinToggle>inherit</pd:joinToggle>
+        <config>
+            <pd:groupType>inputLoop</pd:groupType>
+            <pd:serializable>false</pd:serializable>
+            <pd:over>$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records</pd:over>
+            <pd:iterationElementSlot>recordid</pd:iterationElementSlot>
+            <pd:indexSlot>i</pd:indexSlot>
+            <pd:activityOutputName/>
+            <pd:accumulateOutput>false</pd:accumulateOutput>
+        </config>
+        <pd:inputBindings/>
+        <pd:expanded>true</pd:expanded>
+        <pd:transition>
+            <pd:from>start</pd:from>
+            <pd:to>CreateOrderDetails</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>CreateOrderDetails</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:activity name="CreateOrderDetails">
+            <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+            <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+            <pd:x>568</pd:x>
+            <pd:y>146</pd:y>
+            <config>
+                <timeout>10</timeout>
+                <maxRows>100</maxRows>
+                <emptyStrAsNil>false</emptyStrAsNil>
+                <jdbcSharedConfig>/com_bc_musify/Resources/Connections/JDBC/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+                <ProcedureName>CREATEORDERDETAILS</ProcedureName>
+                <useSchema>true</useSchema>
+                <oraObjects/>
+                <oraTables/>
+                <ConfigurationError>output schema is null</ConfigurationError>
+                <parameterTypes>
+                    <parameter>
+                        <colName>RECORD_ID</colName>
+                        <colType>1</colType>
+                        <dataType>2</dataType>
+                        <typeName>NUMBER</typeName>
+                    </parameter>
+                    <parameter>
+                        <colName>ORDER_ID</colName>
+                        <colType>1</colType>
+                        <dataType>2</dataType>
+                        <typeName>NUMBER</typeName>
+                    </parameter>
+                </parameterTypes>
+            </config>
+            <pd:inputBindings>
+                <inputs>
+                    <inputSet>
+                        <RECORD_ID>
+                            <xsl:value-of select="$recordid/pfx:Records/pfx:RecordID"/>
+                        </RECORD_ID>
+                        <xsl:choose>
+                            <xsl:when test="sum($Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records)>3">
+                                <ORDER_ID>
+                                    <xsl:copy-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/ORDER_ID/@xsi:nil"/>
+                                    <xsl:value-of select="$CreateOrderMoreThan3RecordsProcedure/resultSet/outputSet/ORDER_ID"/>
+                                </ORDER_ID>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <ORDER_ID>
+                                    <xsl:copy-of select="$CreateOrderProcedure/resultSet/outputSet/ORDER_ID/@xsi:nil"/>
+                                    <xsl:value-of select="$CreateOrderProcedure/resultSet/outputSet/ORDER_ID"/>
+                                </ORDER_ID>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </inputSet>
+                </inputs>
+            </pd:inputBindings>
+        </pd:activity>
+    </pd:group>
+    <pd:activity name="CatchSQLException">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>384</pd:x>
+        <pd:y>282</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <fault>localname=JDBCSQLException namespace=http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions</fault>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="CreateOrderMoreThan3RecordsProcedure">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>292</pd:x>
+        <pd:y>211</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/com_bc_musify/Resources/Connections/JDBC/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>CREATEORDERMORETHAN3RECORDS</ProcedureName>
+            <useSchema>true</useSchema>
+            <oraObjects/>
+            <oraTables/>
+            <ConfigurationError>[tibcosoftwareinc][Oracle JDBC Driver][Oracle]ORA-01403: no data found
+ORA-06512: at "SYSTEM.GETCUSTOMERNAMEBYID", line 7
+ORA-06512: at "SYSTEM.CREATEORDERMORETHAN3RECORDS", line 5
+ORA-06512: at line 1
+</ConfigurationError>
+            <parameterTypes>
+                <parameter>
+                    <colName>CUSTOMER_ID</colName>
+                    <colType>2</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_SHIPPING_ADDRESS</colName>
+                    <colType>2</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_AMOUNT</colName>
+                    <colType>2</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>ORDER_ID</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_ORDER_DATE</colName>
+                    <colType>4</colType>
+                    <dataType>93</dataType>
+                    <typeName>TIMESTAMP</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_CUSTOMER_NAME</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_VAT</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <CUSTOMER_ID>
+                        <xsl:value-of select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:CustomerID"/>
+                    </CUSTOMER_ID>
+                    <P_SHIPPING_ADDRESS>
+                        <xsl:value-of select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:ShippingAddress"/>
+                    </P_SHIPPING_ADDRESS>
+                    <P_AMOUNT>
+                        <xsl:value-of select="sum($Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records/pfx:Price)"/>
+                    </P_AMOUNT>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="CreateOrderProcedure">
+        <pd:type>com.tibco.plugin.jdbc.JDBCCallActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCCallActivity</pd:resourceType>
+        <pd:x>291</pd:x>
+        <pd:y>64</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/com_bc_musify/Resources/Connections/JDBC/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <ProcedureName>CREATEORDER</ProcedureName>
+            <useSchema>true</useSchema>
+            <oraObjects/>
+            <oraTables/>
+            <ConfigurationError>[tibcosoftwareinc][Oracle JDBC Driver][Oracle]ORA-01403: no data found
+ORA-06512: at "SYSTEM.GETCUSTOMERNAMEBYID", line 7
+ORA-06512: at "SYSTEM.CREATEORDER", line 16
+ORA-06512: at line 1
+</ConfigurationError>
+            <parameterTypes>
+                <parameter>
+                    <colName>CUSTOMER_ID</colName>
+                    <colType>2</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_SHIPPING_ADDRESS</colName>
+                    <colType>2</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_AMOUNT</colName>
+                    <colType>2</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>ORDER_ID</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_ORDER_DATE</colName>
+                    <colType>4</colType>
+                    <dataType>93</dataType>
+                    <typeName>TIMESTAMP</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_CUSTOMER_NAME</colName>
+                    <colType>4</colType>
+                    <dataType>12</dataType>
+                    <typeName>VARCHAR2</typeName>
+                </parameter>
+                <parameter>
+                    <colName>P_VAT</colName>
+                    <colType>4</colType>
+                    <dataType>2</dataType>
+                    <typeName>NUMBER</typeName>
+                </parameter>
+            </parameterTypes>
+        </config>
+        <pd:inputBindings>
+            <inputs>
+                <inputSet>
+                    <CUSTOMER_ID>
+                        <xsl:value-of select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:CustomerID"/>
+                    </CUSTOMER_ID>
+                    <P_SHIPPING_ADDRESS>
+                        <xsl:value-of select="$Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:ShippingAddress"/>
+                    </P_SHIPPING_ADDRESS>
+                    <P_AMOUNT>
+                        <xsl:value-of select="sum($Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records/pfx:Price)"/>
+                    </P_AMOUNT>
+                </inputSet>
+            </inputs>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="GenerateError">
+        <pd:type>com.tibco.pe.core.GenerateErrorActivity</pd:type>
+        <pd:resourceType>ae.activities.throw</pd:resourceType>
+        <pd:x>624</pd:x>
+        <pd:y>284</pd:y>
+        <config>
+            <faultName>Schema1</faultName>
+        </config>
+        <pd:inputBindings>
+            <ns2:ActivityInput>
+                <data>
+                    <wsdlPfx:Error>
+                        <part1>
+                            <pfx2:Error>
+                                <pfx2:ErrMsg>
+                                    <xsl:value-of select="$CatchSQLException/ns3:JDBCSQLException/msg"/>
+                                </pfx2:ErrMsg>
+                                <pfx2:ErrCode>
+                                    <xsl:value-of select="$CatchSQLException/ns3:JDBCSQLException/msgCode"/>
+                                </pfx2:ErrCode>
+                            </pfx2:Error>
+                        </part1>
+                    </wsdlPfx:Error>
+                </data>
+            </ns2:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>CreateOrderProcedure</pd:from>
+        <pd:to>Group</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CreateOrderMoreThan3RecordsProcedure</pd:from>
+        <pd:to>Group</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CatchSQLException</pd:from>
+        <pd:to>GenerateError</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CreateOrderProcedure</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>count($Start/wsdlPfx:CreateOrderInput/part1/pfx:Order/pfx:Records)&lt;4</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CreateOrderMoreThan3RecordsProcedure</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>otherwise</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Group</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

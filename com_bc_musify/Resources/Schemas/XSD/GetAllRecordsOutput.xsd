@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd2"
+	 targetNamespace="http://www.tibco.com/schemas/Musify/com_bc_musify/Resources/Schemas/Schema.xsd2"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="Record">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Artist" type="xs:string"/>
+				<xs:element name="Album" type="xs:string"/>
+				<xs:element name="Year" type="xs:int"/>
+				<xs:element name="Media" type="xs:string"/>
+				<xs:element name="Type" type="xs:string"/>
+				<xs:element name="Price" type="xs:decimal"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Records">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Record" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

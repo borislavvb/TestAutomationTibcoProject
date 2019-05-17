@@ -3,11 +3,11 @@
 	<globalVariables>
 		<globalVariable>
 			<name>Deployment</name>
-			<value>TestAutomationTibcoProject</value>
+			<value>Musify</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644934</modTime>
+			<modTime>1543389813237</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>DirLedger</name>
@@ -15,7 +15,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644944</modTime>
+			<modTime>1543389813247</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>DirTrace</name>
@@ -23,7 +23,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644916</modTime>
+			<modTime>1543389813222</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>Domain</name>
@@ -31,7 +31,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644967</modTime>
+			<modTime>1543389813272</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HawkEnabled</name>
@@ -39,7 +39,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644947</modTime>
+			<modTime>1543389813250</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JmsProviderUrl</name>
@@ -47,7 +47,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644919</modTime>
+			<modTime>1543389813226</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JmsSslProviderUrl</name>
@@ -55,7 +55,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644957</modTime>
+			<modTime>1543389813261</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RemoteRvDaemon</name>
@@ -63,7 +63,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644951</modTime>
+			<modTime>1543389813253</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RvDaemon</name>
@@ -71,7 +71,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644931</modTime>
+			<modTime>1543389813234</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RvNetwork</name>
@@ -79,7 +79,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644964</modTime>
+			<modTime>1543389813268</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RvService</name>
@@ -87,7 +87,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644922</modTime>
+			<modTime>1543389813229</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RvaHost</name>
@@ -95,7 +95,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644954</modTime>
+			<modTime>1543389813257</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>RvaPort</name>
@@ -103,7 +103,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644937</modTime>
+			<modTime>1543389813240</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>TIBHawkDaemon</name>
@@ -111,7 +111,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644960</modTime>
+			<modTime>1543389813265</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>TIBHawkNetwork</name>
@@ -119,7 +119,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644940</modTime>
+			<modTime>1543389813243</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>TIBHawkService</name>
@@ -127,7 +127,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1558076644925</modTime>
+			<modTime>1543389813232</modTime>
 		</globalVariable>
 	</globalVariables>
 </repository>
